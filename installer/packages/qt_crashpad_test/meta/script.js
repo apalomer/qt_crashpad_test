@@ -56,6 +56,8 @@ Component.prototype.createOperations = function()
   {     
     var tgtdir0 = installer.value("TargetDir")
     var tgtdir = tgtdir0.replace(" ","\\ ")
+    component.addOperation("AppendFile","@TargetDir@/qt_crashpad_test.desktop","Path=@TargetDir@/bin\n")
+    component.addOperation("AppendFile","@TargetDir@/qt_crashpad_test.desktop","Exec=env LD_LIBRARY_PATH=$LD_LIBRARY_PATH:@TargetDir@/lib @TargetDir@/bin/main")
     component.addOperation("Copy","@TargetDir@/qt_crashpad_test.desktop","/usr/share/applications/qt_crashpad_test.desktop")
   }
 }

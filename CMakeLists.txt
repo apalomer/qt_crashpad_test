@@ -66,6 +66,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin")
+set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+
 # Add code
 add_subdirectory(src)
 add_subdirectory(installer)
@@ -84,5 +87,7 @@ if (WIN32)
 else()
   configure_file("${PROJECT_SOURCE_DIR}/third_party/crashpad/crashpad_handler"
                  "${PROJECT_SOURCE_DIR}/installer/packages/qt_crashpad_test/data/bin/crashpad_handler" COPYONLY)
+  configure_file("${PROJECT_SOURCE_DIR}/qt_crashpad_test.desktop.in"
+                 "${PROJECT_SOURCE_DIR}/installer/packages/qt_crashpad_test/data/qt_crashpad_test.desktop" @ONLY)
 endif()
 

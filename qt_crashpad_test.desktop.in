@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=@QTCRASHPADTEST_VERSION@
+Type=Application
+Terminal=false
+Name=@PROJECT_NAME@

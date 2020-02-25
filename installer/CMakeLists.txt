@@ -3,8 +3,8 @@ if(CMAKE_INSTALL_PREFIX MATCHES "${CMAKE_SOURCE_DIR}/installer/packages/qt_crash
   # Deploy qt
   # This needs to be done before protecting
   if (WIN32)
-    install(CODE "MESSAGE(\"Running windeployqt --release ${CMAKE_INSTALL_PREFIX}/bin\")")
-    install(CODE "execute_process(COMMAND windeployqt --release \"${CMAKE_INSTALL_PREFIX}/bin/main.exe\")")
+    install(CODE "MESSAGE(\"Running windeployqt --release ${INSTALL_BIN_DIR}\")")
+    install(CODE "execute_process(COMMAND windeployqt --release \"${INSTALL_BIN_DIR}/main.exe\")")
   endif()
 
   # Generate installer
