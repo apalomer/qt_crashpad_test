@@ -4,3 +4,5 @@ build
 *.user
 *.json
 .excludes
+*.exe
+installer
