@@ -4,12 +4,20 @@
 #include <QWidget>
 #include "myprocess.h"
 
+#include "project_export.h"
+
+#ifdef MYWIDGET
+#define MYWIDGETEXPORT PROJECT_EXPORT
+#else
+#define MYWIDGETEXPORT PROJECT_IMPORT
+#endif
+
 namespace Ui
 {
 class MyWidget;
 }
 
-class MyWidget : public QWidget
+class MYWIDGETEXPORT MyWidget : public QWidget
 {
   Q_OBJECT
 

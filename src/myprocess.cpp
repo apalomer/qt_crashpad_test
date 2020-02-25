@@ -1,10 +1,12 @@
 #include "myprocess.h"
 
-#include <unistd.h>
+#include <thread>
+#include <signal.h>
 
 #include <QDebug>
 #include <QProgressDialog>
 #include <QtConcurrent/QtConcurrent>
+#include <QLabel>
 
 MyProcess::MyProcess(double value, QObject* parent) : QObject(parent), value_(value)
 {
@@ -27,9 +29,9 @@ void MyProcess::heavyLoadProcess(QWidget* requester, double value, std::function
   progress->show();
 
   QtConcurrent::run([this, value, func, progress]() {
-    double* a;
-    *a = 3;
-    sleep(3);
+    QLabel* l;
+    l->setText("a");
+    std::this_thread::sleep_for(std::chrono::seconds(3));
     func(value + value_);
     progress->close();
     progress->deleteLater();
