@@ -20,3 +20,10 @@ else()
     base.lib
   )
 endif()
+
+install(TARGETS myprocess mywidget main
+  EXPORT QtCrashpadTestTargets
+  RUNTIME DESTINATION "${INSTALL_BIN_DIR}" COMPONENT bin
+  LIBRARY DESTINATION "${INSTALL_LIB_DIR}" COMPONENT shlib
+  PUBLIC_HEADER DESTINATION "${INSTALL_INCLUDE_DIR}/gui"
+  COMPONENT dev)

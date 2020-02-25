@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>Qt crashpad test</DisplayName>
+    <Description>Qt crashpad test</Description>
+    <Version>@QTCRASHPADTEST_VERSION@</Version>
+    <ReleaseDate>@TODAY@</ReleaseDate>
+    <Licenses>
+        <License name="This is the license" file="license.txt" />
+    </Licenses>
+    <ForcedInstallation>true</ForcedInstallation>
+    <Checkable>false</Checkable>
+    <SortingPriority>100</SortingPriority>
+    <Script>script.js</Script>
+</Package>

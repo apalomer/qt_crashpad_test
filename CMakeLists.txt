@@ -5,6 +5,15 @@ project(qt_crashpad_test)
 # CMake Policy
 cmake_policy (SET CMP0020 NEW)
 
+# Version
+set(QTCRASHPADTEST_MAJOR_VERSION 0)
+set(QTCRASHPADTEST_MINOR_VERSION 2)
+set(QTCRASHPADTEST_PATCH_VERSION 0)
+set(QTCRASHPADTEST_VERSION ${QTCRASHPADTEST_MAJOR_VERSION}.${QTCRASHPADTEST_MINOR_VERSION}.${QTCRASHPADTEST_PATCH_VERSION})
+message(STATUS "${PROJECT_NAME} version ${QTCRASHPADTEST_VERSION}")
+string(TIMESTAMP TODAY "%Y-%m-%d")
+message(STATUS "Today: ${TODAY}")
+
 if (UNIX)
   include_directories("/home/apalomer/libraries/crashpad/crashpad")
   include_directories("/home/apalomer/libraries/crashpad/crashpad/third_party/mini_chromium/mini_chromium")
@@ -59,3 +68,21 @@ set(CMAKE_AUTORCC ON)
 
 # Add code
 add_subdirectory(src)
+add_subdirectory(installer)
+
+#Configure files
+set(ApplicationsDirX64 "@ApplicationsDirX64@")
+configure_file("${PROJECT_SOURCE_DIR}/installer/config/config.xml.in"
+               "${PROJECT_SOURCE_DIR}/installer/config/config.xml")
+configure_file("${PROJECT_SOURCE_DIR}/installer/packages/qt_crashpad_test/meta/package.xml.in"
+               "${PROJECT_SOURCE_DIR}/installer/packages/qt_crashpad_test/meta/package.xml" @ONLY)
+if (WIN32)
+  configure_file("${PROJECT_SOURCE_DIR}/third_party/crashpad/crashpad_handler.exe"
+                 "${PROJECT_SOURCE_DIR}/installer/packages/qt_crashpad_test/data/bin/crashpad_handler.exe" COPYONLY)
+  configure_file("${PROJECT_SOURCE_DIR}/third_party/windows/VC_redist.x64.exe"
+                 "${PROJECT_SOURCE_DIR}/installer/packages/qt_crashpad_test/data/VC_redist.x64.exe" COPYONLY)
+else()
+  configure_file("${PROJECT_SOURCE_DIR}/third_party/crashpad/crashpad_handler"
+                 "${PROJECT_SOURCE_DIR}/installer/packages/qt_crashpad_test/data/bin/crashpad_handler" COPYONLY)
+endif()
+
